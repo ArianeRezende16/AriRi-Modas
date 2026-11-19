@@ -1,7 +1,12 @@
 
 <?php
+require_once '../config/conexao.php';
 include '../includes/header.php';
-include '../includes/produtos.php';
+
+// Busca todos os produtos cadastrados no banco
+$sql = "SELECT * FROM produtos ORDER BY id ASC";
+$comando = $pdo->query($sql);
+$produtos = $comando->fetchAll();
 ?>
 
 <section class="pagina">
@@ -11,7 +16,7 @@ include '../includes/produtos.php';
     <div class="container mt-5">
         <div class="row g-4">
 
-            <?php foreach ($produtos as $id => $produto): ?>
+            <?php foreach ($produtos as $produto): ?>
 
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="card produto-card h-100">
@@ -23,6 +28,7 @@ include '../includes/produtos.php';
                         >
 
                         <div class="card-body">
+
                             <p class="categoria-produto">
                                 <?php echo htmlspecialchars($produto['categoria']); ?>
                             </p>
@@ -35,12 +41,12 @@ include '../includes/produtos.php';
                                 R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
                             </p>
 
-                            <a href="produto.php?id=<?php echo $id; ?>"
+                            <a href="produto.php?id=<?php echo $produto['id']; ?>"
                                class="btn btn-primary">
                                 Ver produto
                             </a>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
 

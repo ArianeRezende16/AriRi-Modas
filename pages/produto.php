@@ -1,23 +1,35 @@
 
 <?php
-include '../includes/header.php';
-include '../includes/produtos.php';
+require_once '../config/conexao.php';
 
+// Recebe e valida o ID do produto
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+$produto = null;
+
+if ($id !== false && $id !== null && $id > 0) {
+    // Busca somente o produto selecionado
+    $sql = "SELECT * FROM produtos WHERE id = :id";
+    $comando = $pdo->prepare($sql);
+    $comando->execute(['id' => $id]);
+
+    $produto = $comando->fetch();
+}
+
+include '../includes/header.php';
 ?>
 
-<?php if ($id === false || $id === null || !isset($produtos[$id])): ?>
+<?php if (!$produto): ?>
 
     <section class="pagina">
         <h2>Produto não encontrado!</h2>
-        <a href="colecao.php" class="btn btn-primary">
+
+        <a href="colecao.php" class="btn btn-primary mt-3">
             Voltar para a coleção
         </a>
     </section>
 
 <?php else: ?>
-
-    <?php $produto = $produtos[$id]; ?>
 
     <section class="container my-5">
         <div class="row align-items-center g-5">
@@ -48,13 +60,42 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
                     <?php echo htmlspecialchars($produto['descricao']); ?>
                 </p>
 
-                <button class="btn btn-primary mt-3" disabled>
-                    Adicionar ao carrinho
-                </button>
-
-                <p class="text-muted mt-2">
-                    Carrinho disponível em breve.
+                <p class="mt-3">
+                    <strong>Estoque disponível:</strong>
+                    <?php echo (int) $produto['estoque']; ?> unidades
                 </p>
+
+                
+<?php if (isset($_GET['estoque'])): ?>
+    <div class="alert alert-warning">
+        Não há mais unidades disponíveis para adicionar.
+    </div>
+<?php endif; ?>
+
+<?php if ((int) $produto['estoque'] > 0): ?>
+
+    <form action="adicionar_carrinho.php" method="POST">
+
+        <input
+            type="hidden"
+            name="id"
+            value="<?php echo (int) $produto['id']; ?>"
+        >
+
+        <button type="submit" class="btn btn-primary">
+            Adicionar ao carrinho
+        </button>
+
+    </form>
+
+<?php else: ?>
+
+    <button class="btn btn-secondary" disabled>
+        Produto esgotado
+    </button>
+
+<?php endif; ?>
+
 
                 <a href="colecao.php" class="d-block mt-4">
                     Voltar para a coleção

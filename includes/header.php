@@ -18,6 +18,10 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
 
     <!-- CSS da loja -->
     <link rel="stylesheet" href="/AriRi%20Modas/assets/css/style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
 </head>
 
 <body>
@@ -53,6 +57,32 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
             </ul>
 
         </div>
+
+         <div class="icones-header">
+
+    <!-- Login dos clientes -->
+ <a href="/AriRi%20Modas/pages/login.php"
+       title="Minha conta"
+       aria-label="Minha conta">
+        <i class="bi bi-person"></i>
+    </a>
+
+    <!-- Carrinho de compras -->
+    <a href="/AriRi%20Modas/pages/carrinho.php"
+       title="Meu carrinho"
+       aria-label="Meu carrinho">
+        <i class="bi bi-bag"></i>
+    </a>
+
+    <!-- Área administrativa -->
+    <a href="/AriRi%20Modas/admin/login.php"
+       title="Administração"
+       aria-label="Administração">
+        <i class="bi bi-gear"></i>
+    </a>
+
+         </div>
+
     </nav>
 
     <main>

@@ -135,3 +135,34 @@ footer {
     color: #a85d70;
     font-weight: bold;
 }
+
+/* Ícones do cabeçalho */
+
+.icones-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: 30px;
+}
+
+.icones-header a {
+    color: #A85D70;
+    font-size: 23px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.icones-header a:hover {
+    color: #7D4051;
+    transform: translateY(-2px);
+}
+
+/* Ajuste para telas menores */
+
+@media (max-width: 768px) {
+    .icones-header {
+        margin-left: 0;
+        justify-content: center;
+        margin-top: 12px;
+    }
+}

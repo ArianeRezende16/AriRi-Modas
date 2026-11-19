@@ -1,0 +1,20 @@
+
+# Arquivos com informações privadas
+.env
+.env.*
+!.env.example
+
+# Arquivos temporários do Windows
+Thumbs.db
+Desktop.ini
+
+# Arquivos de log
+*.log
+
+# Dependências PHP (caso utilizemos Composer)
+vendor/
+
+# Arquivos temporários
+*.tmp
+*.temp
+

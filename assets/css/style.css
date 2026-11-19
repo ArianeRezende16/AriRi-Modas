@@ -1,0 +1,98 @@
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffaf8;
+    color: #333;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #ffffff;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+}
+
+header h1 {
+    color: #a85d70;
+    font-size: 32px;
+}
+
+header p {
+    margin-top: 8px;
+    color: #777;
+}
+
+/* Conteúdo principal */
+main {
+    text-align: center;
+    padding: 70px 20px;
+}
+
+main h2 {
+    color: #a85d70;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+main p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* Rodapé */
+footer {
+    background-color: #a85d70;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Vitrine de produtos */
+.produto-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.imagem-produto {
+    height: 300px;
+    background-color: #f3e8e2;
+    color: #a85d70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.produto-card .card-title {
+    color: #4a3b38;
+}
+
+.produto-card .card-text {
+    color: #a85d70;
+    font-weight: bold;
+    font-size: 18px;
+}
+.foto-produto {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    background-color: #f3e8e2;
+    padding: 8px;
+}

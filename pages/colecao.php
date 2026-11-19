@@ -1,5 +1,8 @@
 
-<?php include '../includes/header.php'; ?>
+<?php
+include '../includes/header.php';
+include '../includes/produtos.php';
+?>
 
 <section class="pagina">
     <h2>Nossa coleção</h2>
@@ -8,44 +11,44 @@
     <div class="container mt-5">
         <div class="row g-4">
 
-            <!-- Produto 1 -->
-            <div class="col-md-4">
-                <div class="card produto-card">
-                    <img src="../assets/img/blusa.png" class="card-img-top foto-produto" alt="Blusa Elegance">
-                    <div class="card-body">
-                        <h5 class="card-title">Blusa Elegance</h5>
-                        <p class="card-text">R$ 89,90</p>
-                        <a href="#" class="btn btn-primary">Ver produto</a>
-                    </div>
-                </div>
-            </div>
+            <?php foreach ($produtos as $id => $produto): ?>
 
-            <!-- Produto 2 -->
-            <div class="col-md-4">
-                <div class="card produto-card">
-                    <img src="../assets/img/calca.png" class="card-img-top foto-produto" alt="Calça Alfaiataria">
-                    <div class="card-body">
-                        <h5 class="card-title">Calça Alfaiataria</h5>
-                        <p class="card-text">R$ 129,90</p>
-                        <a href="#" class="btn btn-primary">Ver produto</a>
-                    </div>
-                </div>
-            </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="card produto-card h-100">
 
-            <!-- Produto 3 -->
-            <div class="col-md-4">
-                <div class="card produto-card">
-                    <img src="../assets/img/vestido.png" class="card-img-top foto-produto" alt="Vestido Florença">
-                    <div class="card-body">
-                        <h5 class="card-title">Vestido Florença</h5>
-                        <p class="card-text">R$ 149,90</p>
-                        <a href="#" class="btn btn-primary">Ver produto</a>
+                        <img
+                            src="../assets/img/<?php echo htmlspecialchars($produto['imagem']); ?>"
+                            class="card-img-top foto-produto"
+                            alt="<?php echo htmlspecialchars($produto['nome']); ?>"
+                        >
+
+                        <div class="card-body">
+                            <p class="categoria-produto">
+                                <?php echo htmlspecialchars($produto['categoria']); ?>
+                            </p>
+
+                            <h5 class="card-title">
+                                <?php echo htmlspecialchars($produto['nome']); ?>
+                            </h5>
+
+                            <p class="card-text">
+                                R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
+                            </p>
+
+                            <a href="produto.php?id=<?php echo $id; ?>"
+                               class="btn btn-primary">
+                                Ver produto
+                            </a>
+                        </div>
+
                     </div>
                 </div>
-            </div>
+
+            <?php endforeach; ?>
 
         </div>
     </div>
 </section>
 
 <?php include '../includes/footer.php'; ?>
+

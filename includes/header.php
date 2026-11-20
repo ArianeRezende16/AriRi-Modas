@@ -33,56 +33,80 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
     </header>
 
     <!-- Menu de navegação -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container justify-content-center">
+    
+<!-- Menu de navegação -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-4">
 
-            <ul class="navbar-nav">
+        <!-- Botão do menu no celular -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuAriri"
+            aria-controls="menuAriri"
+            aria-expanded="false"
+            aria-label="Abrir menu de navegação"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links da loja -->
+        <div class="collapse navbar-collapse" id="menuAriri">
+            <ul class="navbar-nav mx-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/index.php">Início</a>
+                    <a class="nav-link" href="/AriRi%20Modas/index.php">
+                        Início
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/pages/novidades.php">Novidades</a>
+                    <a class="nav-link" href="/AriRi%20Modas/pages/novidades.php">
+                        Novidades
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/pages/feminino.php">Feminino</a>
+                    <a class="nav-link" href="/AriRi%20Modas/pages/feminino.php">
+                        Feminino
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/pages/promocoes.php">Promoções</a>
+                    <a class="nav-link" href="/AriRi%20Modas/pages/promocoes.php">
+                        Promoções
+                    </a>
                 </li>
 
             </ul>
+        </div>
+
+        <!-- Ícones de acesso -->
+        <div class="icones-header d-flex align-items-center gap-3">
+
+            <a href="/AriRi%20Modas/pages/login.php"
+               title="Minha conta"
+               aria-label="Minha conta">
+                <i class="bi bi-person"></i>
+            </a>
+
+            <a href="/AriRi%20Modas/pages/carrinho.php"
+               title="Meu carrinho"
+               aria-label="Meu carrinho">
+                <i class="bi bi-bag"></i>
+            </a>
+
+            <a href="/AriRi%20Modas/admin/login.php"
+               title="Administração"
+               aria-label="Administração">
+                <i class="bi bi-gear"></i>
+            </a>
 
         </div>
 
-         <div class="icones-header">
+    </div>
+</nav>
 
-    <!-- Login dos clientes -->
- <a href="/AriRi%20Modas/pages/login.php"
-       title="Minha conta"
-       aria-label="Minha conta">
-        <i class="bi bi-person"></i>
-    </a>
-
-    <!-- Carrinho de compras -->
-    <a href="/AriRi%20Modas/pages/carrinho.php"
-       title="Meu carrinho"
-       aria-label="Meu carrinho">
-        <i class="bi bi-bag"></i>
-    </a>
-
-    <!-- Área administrativa -->
-    <a href="/AriRi%20Modas/admin/login.php"
-       title="Administração"
-       aria-label="Administração">
-        <i class="bi bi-gear"></i>
-    </a>
-
-         </div>
-
-    </nav>
 
     <main>

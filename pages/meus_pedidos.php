@@ -53,7 +53,7 @@ include '../includes/header.php';
 
         <div class="table-responsive">
 
-            <table class="table table-striped align-middle">
+            <table class="table table-striped align-middle tabela-meus-pedidos">
 
                 <thead>
                     <tr>

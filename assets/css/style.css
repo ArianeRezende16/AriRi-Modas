@@ -166,3 +166,317 @@ footer {
         margin-top: 12px;
     }
 }
+
+
+/* Ajustes do menu para celular */
+
+.navbar .container-fluid {
+    position: relative;
+}
+
+.icones-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+@media (max-width: 991px) {
+
+    .navbar-toggler {
+        border-color: #A85D70;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 2px #E8D5C8;
+    }
+
+    .navbar-collapse {
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .icones-header {
+        margin-left: auto;
+    }
+
+    .navbar-nav {
+        padding-top: 12px;
+    }
+}
+
+/* Botões principais da AriRi Modas */
+.btn-primary {
+    background-color: #A85D70;
+    border-color: #A85D70;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #8F4B5E;
+    border-color: #8F4B5E;
+}
+
+.btn-primary:active {
+    background-color: #7D4052 !important;
+    border-color: #7D4052 !important;
+}
+
+/* Carrinho adaptado para celular */
+@media (max-width: 767px) {
+
+    .tabela-carrinho thead {
+        display: none;
+    }
+
+    .tabela-carrinho tbody,
+    .tabela-carrinho tr,
+    .tabela-carrinho td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-carrinho tbody tr {
+        background-color: #FFFAF8;
+        border: 1px solid #E8D5C8;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .tabela-carrinho td {
+        border: none;
+        padding: 8px !important;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .tabela-carrinho td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+        color: #A85D70;
+        margin-bottom: 5px;
+    }
+
+    .controles-carrinho {
+        flex-wrap: wrap;
+    }
+
+    .controles-carrinho button {
+        white-space: nowrap;
+    }
+}
+
+/* Fotos das roupas no carrinho */
+.foto-carrinho {
+    width: 75px;
+    height: 90px;
+    object-fit: contain;
+    background-color: #F3E8E2;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+    .foto-carrinho {
+        width: 65px;
+        height: 80px;
+    }
+}
+
+/* Lista de produtos do administrador no celular */
+
+@media (max-width: 767px) {
+
+    .tabela-admin-produtos,
+    .tabela-admin-produtos tbody,
+    .tabela-admin-produtos tr,
+    .tabela-admin-produtos td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-admin-produtos thead {
+        display: none;
+    }
+
+    .tabela-admin-produtos tbody tr {
+        background-color: #FFFAF8;
+        border: 1px solid #E8D5C8;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .tabela-admin-produtos td {
+        border: none;
+        padding: 8px !important;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .tabela-admin-produtos td::before {
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+        color: #A85D70;
+        margin-bottom: 5px;
+    }
+
+    .tabela-admin-produtos td:nth-child(1)::before {
+        content: "Foto";
+    }
+
+    .tabela-admin-produtos td:nth-child(2)::before {
+        content: "Produto";
+    }
+
+    .tabela-admin-produtos td:nth-child(3)::before {
+        content: "Categoria";
+    }
+
+    .tabela-admin-produtos td:nth-child(4)::before {
+        content: "Preço";
+    }
+
+    .tabela-admin-produtos td:nth-child(5)::before {
+        content: "Estoque";
+    }
+
+    .tabela-admin-produtos td:nth-child(6)::before {
+        content: "Ações";
+    }
+}
+
+/* Pedidos administrativos no celular */
+@media (max-width: 767px) {
+
+    .tabela-admin-pedidos,
+    .tabela-admin-pedidos tbody,
+    .tabela-admin-pedidos tr,
+    .tabela-admin-pedidos td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-admin-pedidos thead {
+        display: none;
+    }
+
+    .tabela-admin-pedidos tbody tr {
+        background-color: #FFFAF8;
+        border: 1px solid #E8D5C8;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .tabela-admin-pedidos td {
+        border: none;
+        padding: 8px !important;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .tabela-admin-pedidos td::before {
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+        color: #A85D70;
+        margin-bottom: 5px;
+    }
+
+    .tabela-admin-pedidos td:nth-child(1)::before {
+        content: "Pedido";
+    }
+
+    .tabela-admin-pedidos td:nth-child(2)::before {
+        content: "Cliente";
+    }
+
+    .tabela-admin-pedidos td:nth-child(3)::before {
+        content: "Data";
+    }
+
+    .tabela-admin-pedidos td:nth-child(4)::before {
+        content: "Pagamento";
+    }
+
+    .tabela-admin-pedidos td:nth-child(5)::before {
+        content: "Total";
+    }
+
+    .tabela-admin-pedidos td:nth-child(6)::before {
+        content: "Status";
+    }
+
+    .tabela-admin-pedidos td:nth-child(7)::before {
+        content: "Detalhes";
+    }
+}
+
+/* Histórico de pedidos do cliente no celular */
+@media (max-width: 767px) {
+
+    .tabela-meus-pedidos,
+    .tabela-meus-pedidos tbody,
+    .tabela-meus-pedidos tr,
+    .tabela-meus-pedidos td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-meus-pedidos thead {
+        display: none;
+    }
+
+    .tabela-meus-pedidos tbody tr {
+        background-color: #FFFAF8;
+        border: 1px solid #E8D5C8;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .tabela-meus-pedidos td {
+        border: none;
+        padding: 8px !important;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .tabela-meus-pedidos td::before {
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+        color: #A85D70;
+        margin-bottom: 5px;
+    }
+
+    .tabela-meus-pedidos td:nth-child(1)::before {
+        content: "Pedido";
+    }
+
+    .tabela-meus-pedidos td:nth-child(2)::before {
+        content: "Data";
+    }
+
+    .tabela-meus-pedidos td:nth-child(3)::before {
+        content: "Pagamento";
+    }
+
+    .tabela-meus-pedidos td:nth-child(4)::before {
+        content: "Total";
+    }
+
+    .tabela-meus-pedidos td:nth-child(5)::before {
+        content: "Status";
+    }
+
+    .tabela-meus-pedidos td:nth-child(6)::before {
+        content: "Detalhes";
+    }
+}

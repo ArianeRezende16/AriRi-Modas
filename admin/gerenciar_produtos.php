@@ -52,7 +52,7 @@ $produtos = $comando->fetchAll();
     </a>
 
     <div class="table-responsive">
-        <table class="table table-striped align-middle">
+        <table class="table table-striped align-middle tabela-admin-produtos">
 
             <thead>
                 <tr>
@@ -101,12 +101,13 @@ $produtos = $comando->fetchAll();
     Editar
 </a>
 
+
 <form
     action="excluir_produto.php"
     method="POST"
-    class="d-inline"
-    onsubmit="return confirm('Tem certeza que deseja excluir este produto?');"
+    class="d-inline confirmar-exclusao"
 >
+
     <input
         type="hidden"
         name="id"
@@ -135,6 +136,6 @@ $produtos = $comando->fetchAll();
     </div>
 
 </div>
-
+<script src="../assets/js/script.js" defer></script>
 </body>
 </html>

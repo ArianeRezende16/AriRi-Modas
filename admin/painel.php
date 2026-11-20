@@ -48,6 +48,9 @@ if (
     <a href="gerenciar_produtos.php" class="btn btn-outline-primary">
     Gerenciar produtos
 </a>
+<a href="pedidos.php" class="btn btn-outline-primary">
+    Ver pedidos recebidos
+</a>
 <a href="logout.php" class="btn btn-outline-danger">
     Sair da conta
 </a>

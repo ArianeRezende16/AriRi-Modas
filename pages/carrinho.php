@@ -59,7 +59,7 @@ include '../includes/header.php';
     <?php else: ?>
 
         <div class="table-responsive">
-            <table class="table align-middle">
+            <table class="table align-middle tabela-carrinho">
 
                 <thead>
                     <tr>
@@ -72,14 +72,28 @@ include '../includes/header.php';
 
                 <tbody>
                     <?php foreach ($produtosCarrinho as $produto): ?>
-                        <tr>
-                            <td>
-                                <?php echo htmlspecialchars($produto['nome']); ?>
-                            </td>
+                        
+<tr>
+    <td data-label="Produto">
+        <div class="d-flex align-items-center gap-3">
+
+            <img
+                src="../assets/img/<?php echo htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8'); ?>"
+                alt="<?php echo htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8'); ?>"
+                class="foto-carrinho"
+            >
+
+            <span>
+                <?php echo htmlspecialchars($produto['nome']); ?>
+            </span>
+
+        </div>
+    </td>
+
 
                             
-<td>
-    <div class="d-flex align-items-center gap-2">
+<td data-label="Quantidade">
+    <div class="d-flex align-items-center gap-2 controles-carrinho">
 
         <form action="atualizar_carrinho.php" method="POST">
             <input type="hidden" name="id"
@@ -131,13 +145,13 @@ include '../includes/header.php';
 </td>
 
 
-                            <td>
-                                R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
-                            </td>
+                            <td data-label="Preço">
+    R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
+</td>
 
-                            <td>
-                                R$ <?php echo number_format($produto['subtotal'], 2, ',', '.'); ?>
-                            </td>
+                            <td data-label="Subtotal">
+    R$ <?php echo number_format($produto['subtotal'], 2, ',', '.'); ?>
+</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

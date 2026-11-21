@@ -33,7 +33,7 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
     </header>
 
     <!-- Menu de navegação -->
-    
+
 <!-- Menu de navegação -->
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-4">
@@ -53,33 +53,23 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
 
         <!-- Links da loja -->
         <div class="collapse navbar-collapse" id="menuAriri">
-            <ul class="navbar-nav mx-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/index.php">
-                        Início
-                    </a>
-                </li>
+<ul class="navbar-nav mx-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/pages/novidades.php">
-                        Novidades
-                    </a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/AriRi%20Modas/index.php">
+            Início
+        </a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/pages/feminino.php">
-                        Feminino
-                    </a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/AriRi%20Modas/pages/feminino.php">
+            Moda Feminina
+        </a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/AriRi%20Modas/pages/promocoes.php">
-                        Promoções
-                    </a>
-                </li>
+</ul>
 
-            </ul>
         </div>
 
         <!-- Ícones de acesso -->

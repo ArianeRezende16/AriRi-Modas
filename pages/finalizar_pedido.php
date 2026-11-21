@@ -124,12 +124,14 @@ try {
     );
 
     // Salva o pedido
-    $comando = $pdo->prepare(
-        "INSERT INTO pedidos
-         (usuario_id, total, forma_pagamento, status)
-         VALUES
-         (:usuario_id, :total, :forma_pagamento, 'pendente')"
-    );
+
+$comando = $pdo->prepare(
+    "INSERT INTO pedidos
+     (usuario_id, total, forma_pagamento, status)
+     VALUES
+     (:usuario_id, :total, :forma_pagamento, 'confirmado')"
+);
+
 
     $comando->execute([
         'usuario_id' => $_SESSION['cliente_id'],
@@ -147,11 +149,14 @@ try {
          (:pedido_id, :produto_id, :nome_produto, :quantidade, :preco_unitario)"
     );
 
-    $atualizarEstoque = $pdo->prepare(
-        "UPDATE produtos
-         SET estoque = estoque - :quantidade
-         WHERE id = :id AND estoque >= :quantidade"
-    );
+
+$atualizarEstoque = $pdo->prepare(
+    "UPDATE produtos
+     SET estoque = estoque - :quantidade_retirar
+     WHERE id = :id
+     AND estoque >= :quantidade_disponivel"
+);
+
 
     foreach ($itens as $item) {
 
@@ -163,10 +168,13 @@ try {
             'preco_unitario' => $item['preco']
         ]);
 
-        $atualizarEstoque->execute([
-            'quantidade' => $item['quantidade'],
-            'id' => $item['id']
-        ]);
+
+$atualizarEstoque->execute([
+    'quantidade_retirar' => $item['quantidade'],
+    'quantidade_disponivel' => $item['quantidade'],
+    'id' => $item['id']
+]);
+
 
         if ($atualizarEstoque->rowCount() !== 1) {
             throw new Exception('Não foi possível atualizar o estoque.');

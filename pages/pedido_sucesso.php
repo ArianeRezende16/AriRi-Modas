@@ -70,10 +70,10 @@ include '../includes/header.php';
                 ); ?>
                 (simulado)
             </p>
-
-            <p>
-                <strong>Status:</strong> Pendente
-            </p>
+<p>
+    <strong>Status:</strong>
+    <?php echo htmlspecialchars(ucfirst($pedido['status'])); ?>
+</p>
 
             <div class="alert alert-info mt-4">
                 Este é um projeto escolar.

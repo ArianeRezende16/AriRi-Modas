@@ -1,0 +1,5 @@
+
+# Bloqueia o acesso aos arquivos de configuracao
+<FilesMatch "^\.env(\..*)?$">
+    Require all denied
+</FilesMatch>

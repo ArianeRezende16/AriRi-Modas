@@ -85,30 +85,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $erro = 'Não foi possível salvar a imagem.';
             } else {
 
-                try {
-                    $sql = "INSERT INTO produtos
-                            (nome, descricao, preco, imagem, categoria, estoque)
-                            VALUES
-                            (:nome, :descricao, :preco, :imagem, :categoria, :estoque)";
 
-                    $comando = $pdo->prepare($sql);
+try {
 
-                    $comando->execute([
-                        'nome' => $nome,
-                        'descricao' => $descricao,
-                        'preco' => $preco,
-                        'imagem' => $nomeImagem,
-                        'categoria' => $categoria,
-                        'estoque' => $estoque
-                    ]);
+    // Busca o ID da categoria no banco de dados
+    $consultaCategoria = $pdo->prepare(
+        "SELECT id FROM categorias
+         WHERE nome = :nome
+         LIMIT 1"
+    );
 
-                    $mensagem = 'Produto cadastrado com sucesso!';
+    $consultaCategoria->execute([
+        'nome' => $categoria
+    ]);
 
-                } catch (PDOException $erroBanco) {
-                    @unlink($destino);
-                    error_log($erroBanco->getMessage());
-                    $erro = 'Não foi possível cadastrar o produto.';
-                }
+    $categoriaId = $consultaCategoria->fetchColumn();
+
+    if ($categoriaId === false) {
+        throw new RuntimeException('Categoria não encontrada.');
+    }
+
+    // Cadastra o produto com a categoria relacionada
+    $sql = "INSERT INTO produtos
+            (nome, descricao, preco, imagem, categoria, categoria_id, estoque)
+            VALUES
+            (:nome, :descricao, :preco, :imagem, :categoria, :categoria_id, :estoque)";
+
+    $comando = $pdo->prepare($sql);
+
+    $comando->execute([
+        'nome' => $nome,
+        'descricao' => $descricao,
+        'preco' => $preco,
+        'imagem' => $nomeImagem,
+        'categoria' => $categoria,
+        'categoria_id' => $categoriaId,
+        'estoque' => $estoque
+    ]);
+
+    $mensagem = 'Produto cadastrado com sucesso!';
+
+} catch (Throwable $erroBanco) {
+
+    @unlink($destino);
+
+    error_log($erroBanco->getMessage());
+
+    $erro = 'Não foi possível cadastrar o produto.';
+}
+
             }
         }
     }

@@ -2,6 +2,7 @@
 <?php
 session_start();
 
+// Protege o acesso administrativo
 if (
     !isset($_SESSION['usuario_id']) ||
     ($_SESSION['usuario_tipo'] ?? '') !== 'admin'
@@ -12,6 +13,7 @@ if (
 
 require_once '../config/conexao.php';
 
+// Identifica o produto
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if (!$id || $id < 1) {
@@ -19,9 +21,11 @@ if (!$id || $id < 1) {
     exit;
 }
 
+// Busca o produto no banco
 $consulta = $pdo->prepare(
     "SELECT * FROM produtos WHERE id = :id"
 );
+
 $consulta->execute(['id' => $id]);
 $produto = $consulta->fetch();
 
@@ -33,11 +37,12 @@ if (!$produto) {
 $erro = '';
 $categorias = ['Blusas', 'Calças', 'Vestidos', 'Saias'];
 
-
+// Token de segurança
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+// Processa o formulário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $token = $_POST['csrf_token'] ?? '';
@@ -50,62 +55,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit('Solicitação inválida.');
     }
 
-
     $nome = trim($_POST['nome'] ?? '');
     $descricao = trim($_POST['descricao'] ?? '');
     $categoria = $_POST['categoria'] ?? '';
+
     $preco = filter_var(
         $_POST['preco'] ?? '',
         FILTER_VALIDATE_FLOAT
     );
+
     $estoque = filter_var(
         $_POST['estoque'] ?? '',
         FILTER_VALIDATE_INT
     );
 
+    // Valida os dados
     if (
         $nome === '' ||
         mb_strlen($nome) > 150 ||
         !in_array($categoria, $categorias, true) ||
-        $preco === false || !is_finite($preco) || $preco <= 0 ||
-        $estoque === false || $estoque < 0
+        $preco === false ||
+        !is_finite($preco) ||
+        $preco <= 0 ||
+        $estoque === false ||
+        $estoque < 0
     ) {
+
         $erro = 'Confira os dados informados.';
+
     } else {
 
-        $comando = $pdo->prepare(
-            "UPDATE produtos
-             SET nome = :nome,
-                 descricao = :descricao,
-                 categoria = :categoria,
-                 preco = :preco,
-                 estoque = :estoque
-             WHERE id = :id"
+        // Busca o ID da categoria escolhida
+        $consultaCategoria = $pdo->prepare(
+            "SELECT id FROM categorias
+             WHERE nome = :nome
+             LIMIT 1"
         );
 
-        $comando->execute([
-            'nome' => $nome,
-            'descricao' => $descricao,
-            'categoria' => $categoria,
-            'preco' => $preco,
-            'estoque' => $estoque,
-            'id' => $id
+        $consultaCategoria->execute([
+            'nome' => $categoria
         ]);
 
-        header('Location: gerenciar_produtos.php?editado=1');
-        exit;
+        $categoriaId = $consultaCategoria->fetchColumn();
+
+        if ($categoriaId === false) {
+
+            $erro = 'Categoria não encontrada no banco.';
+
+        } else {
+
+            // Atualiza o produto
+            $comando = $pdo->prepare(
+                "UPDATE produtos
+                 SET nome = :nome,
+                     descricao = :descricao,
+                     categoria = :categoria,
+                     categoria_id = :categoria_id,
+                     preco = :preco,
+                     estoque = :estoque
+                 WHERE id = :id"
+            );
+
+            $comando->execute([
+                'nome' => $nome,
+                'descricao' => $descricao,
+                'categoria' => $categoria,
+                'categoria_id' => $categoriaId,
+                'preco' => $preco,
+                'estoque' => $estoque,
+                'id' => $id
+            ]);
+
+            header('Location: gerenciar_produtos.php?editado=1');
+            exit;
+        }
     }
 
+    // Mantém os valores digitados caso ocorra um erro
     $produto['nome'] = $nome;
     $produto['descricao'] = $descricao;
     $produto['categoria'] = $categoria;
     $produto['preco'] = $_POST['preco'] ?? '';
     $produto['estoque'] = $_POST['estoque'] ?? '';
-}
-
-// Cria um token de segurança para o formulário
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
 
